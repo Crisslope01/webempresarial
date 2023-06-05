@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'webplayground.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'webeplayground',
+        'NAME': 'webplayground',
         'USER': 'postgres',
         'PASSWORD': 'qwerty',
         'HOST': 'localhost',
