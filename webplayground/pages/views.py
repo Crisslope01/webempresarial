@@ -16,10 +16,12 @@ class PagesCreateView(CreateView):
     fields = ["title", "content", "order"]
     success_url = reverse_lazy('pages:pages') # reverse_lazy es para que no se ejecute hasta que se ejecute la vista
     
-class PagesUpdateView(UpdateView):
+class PagesUpdate(UpdateView):
     model = Page
     fields = ["title", "content", "order"]
     template_name_suffix = '_update_form'
     
     def get_success_url(self):
         return reverse_lazy('pages:update', args=[self.object.id]) + '?ok'
+    
+    
