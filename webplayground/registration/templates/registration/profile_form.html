@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Perfil{% endblock %}
+{% block content %}
+
+<main role="main">
+  <div class="container">
+    <div class="row mt-5 mb-3">
+      <div class="col-md-9 mx-auto">
+        <h3>Perfil</h3>
+        <form action="" method="post">{% csrf_token %}
+                
+                {{ form.as_p }}
+            <div class="textcenter">
+                <input type="submit" class="btn btn-primary btn-block" value="Actualizar" />
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

@@ -134,7 +134,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 #auth settings
-LOGIN_REDIRECT_URL = 'pages:pages'
+#LOGIN_REDIRECT_URL = 'pages:pages'
 LOGOUT_REDIRECT_URL = 'home'
 
 #Emails servidor SMTP de pruebas
@@ -146,7 +146,7 @@ else:
     # Aqui hay que configurar un email real para produccion
     pass'''
 
-#Emails servidor SMTP de pruebas
+#Emails servidor SMTP de pruebas este de aca es el que podria ser el de produccion
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -154,3 +154,8 @@ EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'emailpruebasdjango@gmail.com'
 EMAIL_HOST_PASSWORD = 'yyaiavgosmympflr'
 EMAIL_USE_TLS = True
+
+
+#media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
