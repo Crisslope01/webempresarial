@@ -17,6 +17,7 @@ class Profile(models.Model):
     link = models.URLField(max_length=200, null=True, blank=True)
     
     class Meta:
+        ordering = ['user__username']
         verbose_name = 'Perfil'
         verbose_name_plural = 'Perfiles'
         
