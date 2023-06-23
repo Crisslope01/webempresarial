@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import m2m_changed
 
 # Create your models here.
 class Message(models.Model):
@@ -13,4 +14,9 @@ class Message(models.Model):
 class Thread(models.Model):
     users = models.ManyToManyField(User, related_name='threads')
     messages = models.ManyToManyField(Message)
+
+
+def massages_changed(sender,**kwards):
+    pass
+    
     
