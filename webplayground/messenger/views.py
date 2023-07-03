@@ -4,10 +4,11 @@ from .models import Thread, Message
 from django.views.generic.detail import DetailView
 from django.views.generic.base import TemplateView
 from django.http.response import Http404, JsonResponse
-from django.shortcuts import get_object_or_404
-
+from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.contrib.auth.models import User
+from django.urls.base import reverse_lazy
 
 # Create your views here.
 
@@ -36,7 +37,15 @@ def add_message(request, pk):
             message = Message.objects.create(user=request.user, content=content)
             thread.messages.add(message)
             json_response['created'] = True
+            if len(thread.messages.all()) is 1:
+                json_response['first'] = True
     else:
         raise Http404("User is not authenticated")
         
     return JsonResponse(json_response)
+
+@login_required
+def start_thread(request, username):
+    user = get_object_or_404(User, username=username)
+    thread = Thread.objects.find_or_create(user, request.user)
+    return redirect(reverse_lazy('messenger:detail', args=[thread.pk]))

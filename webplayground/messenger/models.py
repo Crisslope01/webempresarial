@@ -31,8 +31,12 @@ class ThreadManager(models.Manager):
 class Thread(models.Model):
     users = models.ManyToManyField(User, related_name='threads')
     messages = models.ManyToManyField(Message)
+    updated = models.DateTimeField(auto_now=True)
     
     objects = ThreadManager()
+    
+    class Meta:
+        ordering = ['-updated']
 
 
 def massages_changed(sender,**kwards):
@@ -53,6 +57,9 @@ def massages_changed(sender,**kwards):
                 
 #buscar los mensajes que no pertenecen a los usuarios del hilo
     pk_set.difference_update(false_pk_set)
+    
+# Forzar actualizacion haciendo save
+    instance.save()
 
 m2m_changed.connect(massages_changed, sender=Thread.messages.through)  
 
